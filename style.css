@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Alexandria', 'Segoe UI', sans-serif;
+  background: #BDD1E9;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ── Main card ── */
+.container {
+  background: #DDE6F0;
+  padding: 30px 20px;
+  border-radius: 12px;
+  width: 380px;
+  max-width: 95vw;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+h1 {
+  font-family: 'Alexandria', sans-serif;
+  color: #1D4066;
+  margin: 0;
+}
+
+p, a, button, input, textarea, label {
+  font-family: 'Alexandria', sans-serif;
+}
+
+/* ── Inputs (login/signup) ── */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 4px 0;
+  border: none;
+  border-radius: 6px;
+  background: #92BBD7;
+  color: #0F2E50;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 0.95rem;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #92BBD7;
+  color: #0F2E50;
+  font-family: 'Alexandria', sans-serif;
+}
+
+/* ── Standard buttons ── */
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 4px;
+  border: none;
+  border-radius: 6px;
+  background: #2F5A84;
+  color: white;
+  font-weight: bold;
+  font-family: 'Alexandria', sans-serif;
+  cursor: pointer;
+}
+
+button:hover { background: #1D4066; }
+
+.secondary-btn { background: #548AAF; }
+
+.link {
+  color: #2F5A84;
+  cursor: pointer;
+  margin-top: 10px;
+  display: block;
+  font-family: 'Alexandria', sans-serif;
+}
+
+/* ── Success ── */
+.success { background: #C8E6C9 !important; }
+.success h1, .sent-title { color: green; margin: 0; }
+
+/* ── Password wrapper ── */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
+  width: 100%;
+}
+
+.password-wrapper input { margin: 0; width: 100%; padding-right: 38px; }
+
+.eye-toggle {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  min-width: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye-toggle:hover { background: none; }
+
+.eye-toggle img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.eye-toggle:hover img { opacity: 1; }
+
+/* ════════════════════════════════════════
+   FEEDBACK PAGE
+   ════════════════════════════════════════ */
+
+/* Feedback title SVG */
+.feedback-title-img {
+  width: 100%;
+  max-width: 326px;
+  height: auto;
+  display: block;
+  margin: 0 auto 4px;
+}
+
+/* Text SVGs (description / question) */
+.feedback-text-img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 2px 0;
+}
+
+.feedback-text-img img { max-width: 100%; height: auto; }
+
+/* ── SVG Buttons (Anonymous, Identity, confirm, cancel) ── */
+.svg-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.svg-btn:hover { background: none; opacity: 0.88; }
+
+.svg-btn img {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  display: block;
+}
+
+/* Two buttons side-by-side */
+.step2-btn-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.svg-btn.half { flex: 1; }
+.svg-btn.half img { max-width: 100%; width: 100%; }
+
+/* ── SVG-backed input fields ──
+   SVG acts as decorative frame, real input sits on top  */
+.svg-input-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-bg-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  border-radius: 6px;
+}
+
+.svg-overlay-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 14px;
+  color: #0F2E50;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 0.93rem;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.svg-overlay-input::placeholder { color: #5a87aa; }
+.email-input { height: 100%; }
+.textarea-input { overflow-y: auto; }
+
+/* ════════════════════════════════════════
+   MODAL OVERLAY — Step 3 confirm
+   ════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 34, 64, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-box {
+  background: #DDE6F0;
+  border-radius: 14px;
+  padding: 28px 20px 24px;
+  width: 90%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+}
+
+.modal-question {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-question img {
+  width: 100%;
+  max-width: 390px;
+  height: auto;
+}
+
+.modal-btn-row {
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  justify-content: center;
+}
+
+.modal-btn-row .svg-btn { flex: 1; max-width: 130px; }
+.modal-btn-row .svg-btn img { width: 100%; height: auto; }

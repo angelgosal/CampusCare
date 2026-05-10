@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusCare – Feedback</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="feedback.css">
+  <script src="script.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════ STEP 1 ═══════════════ -->
+<div id="step1">
+  <div class="phone">
+
+    <!-- ── Shared Header ── -->
+    <div class="app-logo">
+      <img src="CampusCare_Logo.png" alt="CampusCare" class="logo-img">
+    </div>
+
+    <!-- Mid card with text + buttons -->
+    <div class="mid-card" style="padding-bottom: 80px;">
+      <p class="desc-text">
+        This is the page where user can send feedback to the creator of the website.
+      </p>
+      <p class="question-text">Do you want to send a feedback?</p>
+      <button class="btn-anon" onclick="chooseAnon(true)">
+        Send feedback Anonymously
+      </button>
+      <button class="btn-identity" onclick="chooseAnon(false)">
+        Send feedback With Identity
+      </button>
+    </div>
+  </div>
+
+  <!-- Bottom nav – step 1 only -->
+  <nav class="bottom-nav">
+    <div class="nav-box" onclick="location.href='homepage.html'">Home</div>
+    <div class="nav-box" onclick="location.href='viewreport.html'">View Reports</div>
+    <div class="nav-box active">Feedback</div>
+  </nav>
+</div>
+
+<!-- ═══════════════ STEP 2 ═══════════════ -->
+<div class="container" id="step2">
+
+  <!-- ── Shared Header ── -->
+  <div class="app-logo">
+      <img src="CampusCare_Logo.png" alt="CampusCare" class="logo-img">
+    </div>
+
+  <div id="emailField" class="field-wrap" style="display:none">
+    <input type="email" id="fbEmail" placeholder="Sampoerna Email">
+  </div>
+
+  <div id="feedbackWrap" class="field-wrap">
+    <textarea id="feedback" placeholder="Enter Feedback"></textarea>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-cancel" onclick="goBack()">Cancel</button>
+    <button class="btn-submit" onclick="confirmSubmit()">Submit</button>
+  </div>
+
+  <!-- ═══════════════ STEP 3 – confirm modal ═══════════════ -->
+  <div class="fb-popup hidden" id="step3-overlay">
+    <div class="confirm-modal">
+      <div class="confirm-message">
+        Do you wish to submit your feedback?
+      </div>
+      <div class="confirm-actions">
+        <button class="btn-cancel" onclick="goBackToInput()">Cancel</button>
+        <button class="btn-submit" onclick="submitFeedbackFinal()">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ STEP 4 – success ═══════════════ -->
+<div id="step4">
+  <div class="success-layout">
+
+    <header class="success-header">
+      <img src="CampusCare_Logo.png" class="logo-img">
+    </header>
+
+    <div class="success-container">
+      <h2 class="success-title">Sent!</h2>
+
+      <div class="success-box">
+        <p>Thank you for the Feedback!</p>
+      </div>
+
+      <button class="success-btn" onclick="resetFeedback()">Okay.</button>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

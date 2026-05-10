@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Alexandria', 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1d2028;
+  padding: 20px;
+}
+
+/* ── 412×917 phone viewport ── */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 40px 20px;
+  width: 412px;
+  height: 917px;
+  background: linear-gradient(#DDF5FF 5%, #EEFAFF);
+  border-radius: 0;
+  border: none;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── "Welcome to / CampusCare" ── */
+.welcome-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 256px;
+  margin-bottom: 16px;
+  margin-top: 100px;
+}
+
+.welcome-block .welcome-to {
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 49px;
+  text-align: center;
+  color: #0F2E50;
+  display: block;
+  width: 240px;
+}
+
+.welcome-block .campus-care {
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 49px;
+  text-align: center;
+  background: linear-gradient(90deg, #114174 0%, #236AB6 49.04%, #5463AE 96.15%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  width: 256px;
+}
+
+/* ── Input field wrapper ── */
+.field-wrapper {
+  position: relative;
+  width: 380px;
+  height: 40px;
+}
+
+.field-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #BDD1E9;
+  border-radius: 5px;
+  pointer-events: none;
+}
+
+.field-wrapper input {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 12px;
+  right: 30px;
+  width: auto;
+  height: auto;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  font-family: 'Alexandria', 'Segoe UI', sans-serif;
+  font-size: 15px;
+  color: #0F2E50;
+  line-height: 1;
+}
+
+.field-wrapper input::placeholder { color: #5a7fa0; opacity: 1; }
+
+/* ── Eye toggle ── */
+.field-wrapper .eye-toggle {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+
+.field-wrapper .eye-toggle:hover { background: none; }
+
+.eye-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.field-wrapper .eye-toggle:hover .eye-icon { opacity: 1; }
+
+/* ── Inline field error ── */
+.field-error {
+  width: 380px;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 12px;
+  color: #c0392b;
+  background: rgba(192, 57, 43, 0.08);
+  border: 1px solid rgba(192, 57, 43, 0.25);
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-top: 2px;
+  text-align: left;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Login button ── */
+.btn-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 380px;
+  height: 40px;
+  cursor: pointer;
+  border: 1px solid #0F2E50;
+  border-radius: 5px;
+  background: #2F5A84;
+  transition: opacity 0.15s, transform 0.1s;
+  margin-top: 4px;
+}
+
+.btn-login span {
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: #BDD1E9;
+}
+
+.btn-login:hover  { opacity: 0.88; transform: scale(0.98); }
+.btn-login:active { transform: scale(0.96); }
+
+/* ── Sign Up button ── */
+.btn-signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 380px;
+  height: 40px;
+  cursor: pointer;
+  border: 1px solid #0F2E50;
+  border-radius: 5px;
+  background: #548AAE;
+  transition: opacity 0.15s, transform 0.1s;
+  margin-top: 4px;
+}
+
+.btn-signup span {
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: #BDD1E9;
+}
+
+.btn-signup:hover  { opacity: 0.88; transform: scale(0.98); }
+.btn-signup:active { transform: scale(0.96); }
+
+/* ── "Or" divider ── */
+.or-divider {
+  display: flex;
+  align-items: center;
+  width: 380px;
+  margin: 4px 0;
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: '';
+  flex: 1;
+  height: 0;
+  border-top: 3px solid #0F2E50;
+}
+
+.or-divider span {
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0F2E50;
+  padding: 0 12px;
+  white-space: nowrap;
+}
+
+/* ── Links ── */
+.link {
+  color: #2F5A84;
+  cursor: pointer;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.link:hover { text-decoration: underline; }
+
+/* ── Paragraph text ── */
+p {
+  color: #1D4066;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  width: 288px;
+}
+
+p a { color: #2F5A84; font-weight: bold; text-decoration: none; }
+p a:hover { text-decoration: underline; }
+
+/* ════════════════════════════════════════
+   BOTTOM NAV — copied from homepage
+   ════════════════════════════════════════ */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 412px;
+  height: 64px;
+  display: flex;
+  border-top: 1px solid #BDD1E9;
+  z-index: 50;
+}
+
+.nav-box {
+  flex: 1;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #92BBD7;
+  cursor: pointer;
+  text-decoration: none;
+  background: #EDFAFF;
+  border: none;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+
+.nav-box.active {
+  background: #BDD1E9;
+  color: #1D4066;
+}
+
+.nav-box:hover:not(.active) {
+  background: #DDF5FF;
+  color: #548AAE;
+}

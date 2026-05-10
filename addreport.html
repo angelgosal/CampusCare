@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="addReportStyle.css">
+</head>
+<body>
+    <div class="phone">
+        <header>
+            <div class="logo"><img src="CampusCare_Logo.png" alt="CampuCare Logo" class="logo-img"></div>
+        </header>
+
+        <main>
+            <!--Area-->
+            <section class="dropdown-section area-section">
+            <button class="dropdown-header" id="areaHeader">
+                <span id="areaText">Area</span>
+                <span class="dropdown-icon" id="areaIcon"></span>
+            </button>
+
+            <div class="area-content hidden" id="areaContent">
+                <div class="floor-list" id="floorButtons">
+                <button data-floor="19th">19th</button>
+                <button data-floor="7th">7th</button>
+                <button data-floor="6th">6th</button>
+                <button data-floor="LG">LG</button>
+                </div>
+
+                <div class="class-list hidden" id="classButtons"></div>
+
+                <div class="selected-area-wrapper hidden" id="selectedAreaWrapper">
+                <button class="selected-area-btn" id="selectedAreaBtn"></button>
+                </div>
+            </div>
+            </section>
+
+            <!--Facility-->
+            <section class="dropdown-section">
+                <button class="dropdown-header" id="facilityHeader">
+                    <span id="facilityText">Facility</span>
+                    <span class="dropdown-icon" id="facilityIcon"></span>
+                </button>
+
+                <div class="dropdown-content hidden" id="facilityContent">
+                    <div class="button-grid facility-grid" id="facilityButtons">
+                        <button>Desk</button>
+                        <button>Chair</button>
+                        <button>Projector</button>
+                        <button>Socket</button>
+                        <button>Lights</button>
+                        <button>Dispenser</button>
+                        <button>Wifi</button>
+                        <button>AC</button>
+                        <button>Toilet <img src="Girl-Icon.png"></button>
+                        <button>Toilet <img src="Boy-Icon.png"></button>
+                        <button>Vending Machine</button>
+                        <button id="othersBtn">Others...</button>
+                    </div>
+                </div>
+            </section>
+
+            <!--Upload-->
+            <section class="upload-box" id="uploadBox">
+            <input type="file" id="fileInput" accept="image/*" hidden />
+
+            <div id="uploadDefault">
+                <img class="upload-icon" src="Upload imagesphotos.png">
+                <p>Upload photos/videos</p>
+                <small>Max 1 photo & 1MB</small>
+            </div>
+
+            <div id="uploadPreview" class="upload-preview hidden"></div>
+            </section>
+
+        
+        <!--Description-->
+        <textarea id="description" placeholder="Enter Description"></textarea>
+        
+        <div class="actions">
+            <button class="cancel-btn" id="cancelBtn">Cancel</button>
+            <button class="submit-btn" id="submitBtn">Submit</button>
+        </div>
+    </main>
+
+    <!--Popup for Others-->
+    <div class="popup hidden" id="popup">
+        <div class="popup-content">
+            <h3>Enter Facility Name</h3>
+            <input type="text" id="otherInput" placeholder="Example: Door handle" />
+
+            <div class="popup-actions">
+                <button id="closePopup">Cancel</button>
+                <button id="saveOther">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Submit Popup-->
+    <div class="popup hidden" id="confirmPopup">
+    <div class="confirm-modal">
+        <div class="confirm-message">
+        Do you wish to submit?
+        </div>
+
+        <div class="confirm-actions">
+        <button id="confirmCancel">Cancel</button>
+        <button id="confirmSubmit">Submit</button>
+        </div>
+    </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="popup hidden no-blur" id="successPopup">
+    <div class="success-layout">
+
+        <header class="success-header">
+        <img src="CampusCare_Logo.png" class="logo-img">
+        </header>
+
+        <div class="success-container">
+        <h2 class="success-title">Reported</h2>
+
+        <div class="success-box">
+            <p>Your report will be reviewed shortly.</p>
+        </div>
+
+        <button id="successOk" class="success-btn">Okay.</button>
+        </div>
+
+    </div>
+    </div>
+    </div>
+
+    <script src="addReportScript.js"></script>
+</body>
+</html>

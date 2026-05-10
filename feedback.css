@@ -1,0 +1,507 @@
+/* ── Reset ── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Body ── */
+body {
+  font-family: 'Alexandria', 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #1d2028;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ── Phone frame (matches homepage .app-viewport) ── */
+.phone {
+  position: relative;
+  width: 412px;
+  height: 917px;
+  background: linear-gradient(#DDF5FF 5%, #EEFAFF);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* ── Mid card rectangle ── */
+.mid-card {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(180deg,
+    rgba(239,247,255,0.1) 0%,
+    #E7F6FF 46.15%,
+    rgba(221,245,255,0.1) 100%);
+  border-radius: 20px;
+  margin-top: 329px;
+  padding: 16px 16px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ══════════════════════════════════════════
+   APP LOGO
+   ══════════════════════════════════════════ */
+
+/* Step 1: absolutely positioned on the phone frame */
+#step1 .app-logo {
+  position: absolute;
+  width: 326px;
+  height: 66px;
+  left: 29px;
+  top: 199px;
+}
+
+/* Steps 2 / 4: absolutely positioned */
+.container .app-logo {
+  position: absolute;
+  width: 326px;
+  height: 66px;
+  left: 29px;
+  top: 80px;
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ── Description text ── */
+.desc-text {
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #0F2E50;
+  padding: 0 6px;
+}
+
+/* ── Question text ── */
+.question-text {
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #0F2E50;
+}
+
+/* ── Step 1 buttons ── */
+.btn-anon {
+  width: 380px;
+  max-width: 95%;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #0F2E50;
+  background: linear-gradient(90deg, #548AAE 0%, #455F8F 35.58%, #5463AE 68.75%, #57458F 100%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #BDD1E9;
+  transition: opacity 0.15s;
+}
+
+.btn-anon:hover { opacity: 0.88; }
+
+.btn-identity {
+  width: 380px;
+  max-width: 95%;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #0F2E50;
+  background: linear-gradient(90deg, #EBF5FF 0%, #DCEDFF 33.65%, rgba(166,216,250,0.9) 68.27%, #C4CEFF 100%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #0F2E50;
+  transition: opacity 0.15s;
+}
+
+.btn-identity:hover { opacity: 0.88; }
+
+/* ── Steps 2 / 4 container ── */
+.container {
+  position: relative;
+  background: linear-gradient(#DDF5FF 5%, #EEFAFF);
+  width: 412px;
+  height: 917px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  display: none;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+
+
+
+
+/* ── Anonymous: single feedback textarea ── */
+#step2 #feedbackWrap {
+  position: absolute;
+  width: 380px;
+  height: 419px;
+  left: calc(50% - 380px/2);
+  top: 209px;
+}
+
+
+
+/* ── With Identity: email field ── */
+#step2 #emailField {
+  position: absolute;
+  width: 380px;
+  height: 73px;
+  left: calc(50% - 380px/2);
+  top: 249px;
+  display: none; /* shown via JS */
+}
+
+#fbEmail-error,
+#feedback-error {
+  left: calc(50% - 380px/2);
+}
+
+/* ── With Identity: feedback textarea (shorter) ── */
+#step2 #feedbackWrap.with-identity {
+  position: absolute;
+  width: 380px;
+  height: 288px;
+  left: calc(50% - 380px/2);
+  top: 340px;
+}
+
+/* ── Inline field error (matches auth.css) ── */
+.field-error {
+  width: 380px;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 12px;
+  color: #c0392b;
+  background: rgba(192, 57, 43, 0.08);
+  border: 1px solid rgba(192, 57, 43, 0.25);
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-top: 2px;
+  text-align: left;
+  position: absolute;
+  left: calc(50% - 380px/2);
+  animation: fbFadeIn 0.15s ease;
+  z-index: 10;
+}
+
+@keyframes fbFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Shared input / textarea styles ── */
+.field-wrap input[type="email"],
+.field-wrap textarea {
+  width: 100%;
+  height: 100%;
+  padding: 8px 16px;
+  border: 1px solid #1D4066;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #FAFDFF 0%, rgba(221,245,255,0.9) 100%);
+  font-family: 'Alexandria', sans-serif;
+  font-size: 15px;
+  line-height: 18px;
+  color: #0F2E50;
+  outline: none;
+  resize: none;
+  display: block;
+}
+
+.field-wrap input[type="email"]::placeholder { color: #0F2E50; }
+.field-wrap textarea::placeholder           { color: #1D4066; }
+
+/* ── Button row — anchored below the feedback box ── */
+#step2 .btn-row {
+  position: absolute;
+  width: 380px;
+  left: calc(50% - 380px/2);
+  top: 648px; /* 209+419+20 anon baseline; JS adjusts for identity */
+  display: flex;
+  gap: 12px;
+}
+
+.btn-cancel {
+  flex: 1;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #0F2E50;
+  background: white;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 14px;
+  color: #0F2E50;
+  cursor: pointer;
+}
+
+.btn-submit {
+  flex: 1;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #0F2E50;
+  background: #548AAE;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 14px;
+  color: #EDFAFF;
+  cursor: pointer;
+}
+
+/* ── Okay button (Step 4) ── */
+.btn-okay {
+  width: 118px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #0F2E50;
+  background: white;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 14px;
+  color: #0F2E50;
+  cursor: pointer;
+  margin-top: 12px; /* FIX: space between "Thank you" text and Okay button */
+}
+
+
+
+/* ── Bottom Navigation Bar (step 1 only) ── */
+#step1 .bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  background: #EDFAFF;
+  border-top: 1px solid #ddd;
+  z-index: 50;
+}
+
+#step1 .nav-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #92BBD7;
+  cursor: pointer;
+}
+
+#step1 .nav-box.active {
+  background: #BDD1E9;
+  color: #1D4066;
+}
+
+
+
+/* ── Steps 2 shown as centered container ── */
+#step2 {
+  display: none;
+}
+
+/* ── Step 4 – same viewport as .container, not fixed ── */
+#step4 {
+  display: none;
+  position: relative;
+  width: 412px;
+  height: 917px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    #DDF5FF 0%,
+    #DCFFE9 24%,
+    #F8FFEB 61%,
+    #DAFFEE 100%
+  );
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+#step4.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ── Logo + title row for steps 2, 3, 4 ── */
+.logo-title-row {
+  display: none; /* replaced by .app-header */
+}
+
+
+
+
+
+
+/* ── Step 1 wrapper (matches homepage viewport exactly) ── */
+#step1 {
+  position: relative;
+  width: 412px;
+  height: 917px;
+  overflow: hidden;
+}
+
+
+.success-layout {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.success-header {
+  position: absolute;
+  width: 326px;
+  height: 66px;
+  left: 29px;
+  top: 80px;
+}
+
+.success-header .logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.success-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  text-align: center;
+}
+
+.success-title {
+  color: #259427;
+  font-size: 28px;
+  margin-bottom: 8px;
+  text-decoration: underline;
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 700;
+}
+
+.success-box {
+  border: 1.5px solid #259427;
+  background: linear-gradient(to bottom, #E8FFE8 0%, #D8FFD8 100%);
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 14px;
+}
+
+.success-box p {
+  color: #259427;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  font-family: 'Alexandria', sans-serif;
+}
+
+.success-btn {
+  width: 90px;
+  height: 30px;
+  border: 1px solid #123d67;
+  border-radius: 4px;
+  background: white;
+  color: #123d67;
+  font-size: 12px;
+  font-family: 'Alexandria', sans-serif;
+  cursor: pointer;
+}
+
+/* ══════════════════════════════════════════
+   STEP 3 – CONFIRM POPUP (mirrors addreport)
+   ══════════════════════════════════════════ */
+
+.fb-popup {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 600ms ease;
+}
+
+.fb-popup.hidden {
+  display: none !important;
+}
+
+.fb-popup.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.fb-popup .confirm-modal {
+  width: 320px;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 600ms ease, opacity 600ms ease;
+}
+
+.fb-popup.active .confirm-modal {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.fb-popup .confirm-message {
+  background: rgba(221,245,255,0.95);
+  border: 2px solid #123d67;
+  border-radius: 5px;
+  padding: 18px;
+  text-align: center;
+  color: #123d67;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 14px;
+  font-family: 'Alexandria', sans-serif;
+}
+
+.fb-popup .confirm-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fb-popup .confirm-actions .btn-cancel {
+  width: 110px;
+  height: 38px;
+  border: 1.5px solid #123d67;
+  border-radius: 5px;
+  background: white;
+  color: #123d67;
+  font-weight: bold;
+  font-family: 'Alexandria', sans-serif;
+  flex: unset;
+}
+
+.fb-popup .confirm-actions .btn-submit {
+  width: 110px;
+  height: 38px;
+  border-radius: 5px;
+  background: #4d8bb5;
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-family: 'Alexandria', sans-serif;
+  flex: unset;
+}

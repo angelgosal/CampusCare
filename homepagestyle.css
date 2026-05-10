@@ -1,0 +1,345 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #1d2028;
+    font-family: 'Alexandria', sans-serif;
+    color: #1D4066;
+    padding: 20px;
+}
+
+.app-viewport {
+    width: 412px;
+    height: 917px;
+    background: linear-gradient(#DDF5FF 5%, #EEFAFF);
+    display: flex;
+    flex-direction: column; /* Stacks header, content, nav */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* FIXED HEADER */
+.fixed-header {
+    flex: 0 0 auto;
+    padding: 20px 0 10px 0;
+    z-index: 100;
+}
+
+.logo-container { display: flex; justify-content: center; margin-bottom: 20px; }
+.main-logo { width: 350px; cursor: pointer; }
+
+.search-area { width: 380px; margin: 0 auto 15px auto; }
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #EEFAFF;
+    border: 1.5px solid #1D4066;
+    border-radius: 5px;
+    padding: 0 15px;
+    height: 50px;
+}
+.search-box input { flex: 1; border: none; background: transparent; font-size: 18px; outline: none; }
+
+.action-btns { width: 380px; margin: 0 auto; display: flex; justify-content: space-between; position: relative; }
+.btn-action {
+    width: 138px;
+    height: 38px;
+    border-radius: 5px;
+    border: 1px solid #1D4066;
+    background: #EEFAFF;
+    color: #1D4066;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.sort-dropdown {
+    display: none;
+    position: absolute;
+    width: 138px;
+    top: 42px;
+    background: white;
+    border: 1px solid #1D4066;
+    border-radius: 5px;
+    z-index: 200;
+}
+.sort-item { padding: 10px; text-align: center; cursor: pointer; font-size: 14px; }
+.sort-item:hover { background: #DDF5FF; }
+
+/* SCROLLABLE AREA */
+.scroll-content {
+    flex: 1; /* Takes up all available space in middle */
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Hides scrollbar for Chrome, Safari and Opera */
+.scroll-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hides scrollbar for IE, Edge and Firefox */
+.scroll-content {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.app-viewport {
+    /* ... your existing code ... */
+    overflow: hidden; /* This ensures only the middle part scrolls, not the whole 'phone' */
+}
+
+.fixed-facility-section, .progress-section {
+    width: 100%;
+    /* This ensures padding doesn't increase the width beyond 100% */
+    box-sizing: border-box; 
+    
+    border: 2px solid #1D4066;
+    border-radius: 20px;
+    
+    /* Added 15px to the sides so content doesn't touch the border */
+    padding: 15px; 
+    
+    background: rgba(255, 255, 255, 0.2);
+    position: relative;
+    margin-bottom: 20px; /* Space between the two sections */
+    
+    /* Optional: helps the "View All" stay inside the padding */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.section-header-row { display: flex; justify-content: center; margin-bottom: 10px; position: relative; }
+.section-title { font-size: 20px; font-weight: bold; }
+.view-all { position: absolute; top: 20px; right: 15px; font-size: 11px; text-decoration: underline; color: #1D4066; }
+.view-allR { position: absolute; top: 30px; right: 15px; font-size: 11px; text-decoration: underline; color: #1D4066; }
+
+
+.fixed-card-content { position: relative; height: 200px; display: flex; justify-content: center; }
+.fixed-photo { width: 340px; height: 100%; object-fit: cover; border-radius: 10px; }
+
+.status-overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.status-pill { background: rgba(255, 255, 255, 0.8); padding: 2px 10px; border-radius: 15px; font-size: 10px; border: 0.5px solid #1D4066; }
+
+/* HORIZONTAL CARDS */
+.cards-container {
+    display: flex;
+    gap: 15px;
+    padding: 10px 20px; /* Added padding for shadow visibility */
+    overflow-x: auto;   /* Keep horizontal scroll */
+    overflow-y: hidden;  /* STOPS VERTICAL SCROLL */
+    height: 220px;
+    align-items: flex-start; /* Ensures cards stay at the top */
+    scrollbar-width: none;   /* Optional: hides scrollbar on Firefox */
+}
+
+/* Hide scrollbar for Chrome/Safari */
+.cards-container::-webkit-scrollbar {
+    display: none;
+}
+
+.report-card {
+    flex: 0 0 170px;
+    height: 220px;       /* Fixed height slightly smaller than container */
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Ensure hidden cards don't create ghost space */
+.searchable-card[style*="display: none"] {
+    display: none !important;
+}
+
+.date-box {
+    background: #BDD1E9;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 13px; }
+
+.img-box {
+    position: relative;
+    height: 130px; }
+
+.img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
+
+.report-status {
+    position: absolute;
+    bottom: 5px; right: 5px; background: white; padding: 2px 8px; border-radius: 10px; font-size: 10px; }
+
+.info-box { flex: 1; padding: 10px; font-size: 11px; text-align: center; display: flex; align-items: center; justify-content: center; }
+
+/* ARROWS */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    transform: translateY(-50%);
+    background: rgba(189, 209, 233, 0.8);
+    border: 1px solid #1D4066;
+    border-radius: 50%;
+    z-index: 10;
+    cursor: pointer;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+.progress-prev { left: 10px; bottom: 120px; }
+.progress-next { right: 10px; bottom: 120px; }
+
+/* BOTTOM NAV */
+.bottom-nav {
+    flex: 0 0 64px;
+    display: flex;
+    background: #EDFAFF;
+    border-top: 1px solid #ddd;
+}
+.nav-box { flex: 1; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #92BBD7; cursor: pointer; }
+.nav-box.active { background: #BDD1E9; color: #1D4066; }
+
+/* --- ABOUT US SPECIFIC STYLES --- */
+
+/* Applying Alexandria to the whole viewport for consistency */
+.app-viewport {
+    /* ... existing viewport styles ... */
+    font-family: 'Alexandria', sans-serif; 
+}
+
+.about-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+}
+
+.about-page-title {
+    font-family: 'Alexandria', sans-serif;
+    font-size: 20px; /* Applied 20px */
+    font-weight: 700;
+    color: #1D4066;
+}
+
+.back-btn-ui {
+    background: #CBEBFF;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: 'Alexandria', sans-serif;
+}
+
+.about-content {
+    padding: 0 30px 40px 30px;
+    overflow-y: auto;
+}
+
+.about-hero {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.about-hero h1 {
+    font-family: 'Alexandria', sans-serif;
+    font-size: 32px; /* Hero text usually slightly larger, but can be set to 20px if preferred */
+    line-height: 1.2;
+    color: #1D4066;
+}
+
+.about-hero span {
+    color: #5B7DBE;
+}
+
+.about-text p {
+    font-family: 'Alexandria', sans-serif;
+    font-size: 20px; /* Applied 20px */
+    line-height: 1.4;
+    margin-bottom: 24px;
+    font-weight: 400;
+    color: #1D4066;
+}
+
+.about-hero h1 {
+    font-family: 'Alexandria', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #1D4066; /* This makes "Welcome to" black */
+}
+
+.about-hero h1 span {
+    /* Applying your 3-stop gradient only to CampusCare */
+    background: linear-gradient(
+        90deg, 
+        #114174 0%, 
+        #236AB6 49%, 
+        #5463AE 96%
+    );
+
+    /* Clipping logic for the span */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Display inline-block helps clipping stay consistent on some browsers */
+    display: inline-block; 
+}
+
+.no-image {
+  width: 100%;
+  height: 100%;
+  background: #DDF5FF;
+  color: #1D4066;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+#fixedContainer,
+#issuedContainer {
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+#fixedContainer .fixed-card-content,
+#issuedContainer .report-card {
+  scroll-snap-align: start;
+}
+
+.empty-message {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1D4066;
+}
