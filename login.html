@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusCare – Login</title>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+<div class="container">
+
+  <div class="welcome-block">
+    <span class="welcome-to">Welcome to</span>
+    <span class="campus-care">CampusCare</span>
+  </div>
+
+  <!-- Email -->
+  <div class="field-wrapper">
+    <input type="email" id="email" placeholder="Sampoerna Email" autocomplete="email">
+  </div>
+
+  <!-- Password + eye toggle -->
+  <div class="field-wrapper">
+    <input type="password" id="password" placeholder="Enter Password" autocomplete="current-password">
+    <button class="eye-toggle" type="button"
+            onclick="togglePassword('password', this)"
+            tabindex="-1" aria-label="Show password">
+      <!-- Open eye — shown by default (password is hidden) -->
+      <svg class="eye-icon eye-open-icon" viewBox="0 0 44 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23.4375 5.5C28.408 5.5 32.4375 9.52943 32.4375 14.5C32.4375 19.4706 28.408 23.5 23.4375 23.5C18.4669 23.5 14.4375 19.4706 14.4375 14.5C14.4375 9.52943 18.4669 5.5 23.4375 5.5ZM26.4375 6.5C24.2283 6.5 22.4375 8.29086 22.4375 10.5C22.4375 12.7091 24.2283 14.5 26.4375 14.5C28.6466 14.5 30.4375 12.7091 30.4375 10.5C30.4375 8.29086 28.6466 6.5 26.4375 6.5Z" fill="#1D4066"/>
+        <path d="M5.43747 13.5C13.1087 -0.361123 34.2046 0.705091 40.4375 13.5" stroke="#1D4066" stroke-width="1"/>
+      </svg>
+      <!-- Closed eye — hidden by default -->
+      <svg class="eye-icon eye-closed-icon" viewBox="0 0 44 31" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <path d="M23.4375 7.21511C28.408 7.21511 32.4375 11.2445 32.4375 16.2151C32.4375 21.1857 28.408 25.2151 23.4375 25.2151C18.4669 25.2151 14.4375 21.1857 14.4375 16.2151C14.4375 11.2445 18.4669 7.21511 23.4375 7.21511ZM26.4375 8.21511C24.2283 8.21511 22.4375 10.006 22.4375 12.2151C22.4375 14.4242 24.2283 16.2151 26.4375 16.2151C28.6466 16.2151 30.4375 14.4242 30.4375 12.2151C30.4375 10.006 28.6466 8.21511 26.4375 8.21511Z" fill="#1D4066"/>
+        <path d="M5.43747 15.2151C13.1087 1.35399 34.2046 2.4202 40.4375 15.2151" stroke="#1D4066"/>
+        <line x1="8.83524" y1="5.00007" x2="37.2224" y2="25.8173" stroke="#BDD1E9" stroke-width="2" stroke-linecap="round"/>
+        <line x1="8.83524" y1="4.00007" x2="37.2224" y2="24.8173" stroke="#1D4066" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <button class="btn-login" onclick="login()"><span>Login</span></button>
+
+  <span class="link" onclick="forgotPassword()">Forgot Password?</span>
+
+  <div class="or-divider"><span>Or</span></div>
+
+  <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+
+
+</div>
+</body>
+</html>
