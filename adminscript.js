@@ -12,7 +12,19 @@ const detailLocation = document.getElementById("detailLocation");
 const detailFacility = document.getElementById("detailFacility");
 const detailDesc = document.getElementById("detailDesc");
 
-let currentReports = JSON.parse(localStorage.getItem("reports")) || [];
+import { db, collection, getDocs } from "./firebase.js";
+
+async function loadReports() {
+  const snapshot = await getDocs(collection(db, "reports"));
+  currentReports = snapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+
+  renderReports();
+}
+
+loadReports();
 
 function saveReports() {
   localStorage.setItem("reports", JSON.stringify(currentReports));

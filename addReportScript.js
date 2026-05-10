@@ -56,9 +56,9 @@ const classesByFloor = {
   "7th": [
     "02", "03", "04", "Dean Office",
     "Prayer Room", "Lecturer Office", "GA Storage",
-    "Green Screen", "CC I", "CC II", "Gen Science Lab",
+    "Green Screen", "Gen Science Lab",
     "Cyber Physical Systems Lab", "Head Of Units Office",
-    "Toilet ♀", "Toilet ♂", "Other"
+    "SL", "CC I", "CC II", "Toilet ♀", "Toilet ♂", "Other"
   ],
   "6th": [
      "01", "02", "03",
@@ -334,9 +334,9 @@ confirmSubmit.addEventListener("click", () => {
   };
 
   try {
-    const reports = JSON.parse(localStorage.getItem("reports")) || [];
-    reports.push(report);
-    localStorage.setItem("reports", JSON.stringify(reports));
+    import { db, collection, addDoc } from "./firebase.js";
+
+    await addDoc(collection(db, "reports"), report);
 
     closePopupAnimated(confirmPopup);
 
