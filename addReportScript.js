@@ -47,36 +47,41 @@ let uploadedImageData = "";
 
 const classesByFloor = {
   "19th": [
-    "01", "02", "03", "04", "15",
+    "01", "02", "03", "04", "05",
+    "06", "07", "08", "09", "10",
+    "11", "12", "13", "14", "15",
     "16", "17", "18", "19", "20",
     "SL", "Clinic", "Counseling",
-    "Lecturer Office", "Musholla", "Tutoring Room",
-    "BEM Room", "Toilet ♀", "Toilet ♂", "Other"
+    "Lecturer Room", "Tutoring Room",
+    "Toilet ♀", "Toilet ♂", "Other"
   ],
   "7th": [
-    "02", "03", "04", "Dean Office",
-    "Prayer Room", "Lecturer Office", "GA Storage",
-    "Green Screen", "CC I", "CC II", "Gen Science Lab",
-    "Cyber Physical Systems Lab", "Head Of Units Office",
-    "Toilet ♀", "Toilet ♂", "Other"
+    "01", "02", "03", "04", "05",
+    "06", "07", "08", "09", "10",
+    "11", "12", "13", "14", "15",
+    "16", "17", "18", "19", "20",
+    "SL", "Toilet ♀", "Toilet ♂",
+    "Other", "CC", "TC", "CL",
+    "IoTL", "LA", "CR", "UA"
   ],
   "6th": [
      "01", "02", "03",
     "Library", "Office",
+    "Toilet ♀", "Toilet ♂",
     "Meeting Room Soekarno",
     "Meeting Room Sjahrir",
     "Meeting Room Hatta",
     "Library Staff Office",
     "Student Affairs Office",
-    "Toilet ♀", "Toilet ♂",
     "Other"
   ],
   "LG": [
-    "CS Lab", "IS Lab", "MEI", "Computer Lab",
-    "Wet Lab", "Toilet ♀", "Toilet ♂",
-    "CS & IS Lab", "IE Lab",
+    "CS Lab", "IS Lab", "MEI", "CL",
+    "WL", "Toilet ♀", "Toilet ♂",
+    "CS&IS Lab", "IE Lab",
     "Lab LG", "Mechatronic Lab",
-    "Facilities Office", "Other"
+    "Facilities Office",
+    "Wet Lab", "Other"
   ]
 };
 
