@@ -143,11 +143,11 @@ document.querySelectorAll(".sort-item").forEach(item => {
         }
       });
 
-    if (sortType === "Latest") {
+    if (sortType === "Recent") {
       reports.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
 
-    if (sortType === "Recent") {
+    if (sortType === "Latest") {
       reports.sort((a, b) => new Date(a.date) - new Date(b.date));
     }
 
