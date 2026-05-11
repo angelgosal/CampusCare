@@ -111,7 +111,7 @@ function globalSort(crit){
             card.style.display="";
         });
 
-        if(crit==="latest"||crit==="recent"){
+        if(crit==="Recent"||crit==="Latest"){
 
             cards.sort((a,b)=>{
 
@@ -123,7 +123,7 @@ function globalSort(crit){
                     b.dataset.date||"2000-01-01"
                 );
 
-                return crit==="latest"
+                return crit==="Recent"
                 ?dateB-dateA
                 :dateA-dateB;
 
