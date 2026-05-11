@@ -147,7 +147,7 @@ document.querySelectorAll(".sort-item").forEach(item => {
       reports.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
 
-    if (sortType === "oldest") {
+    if (sortType === "Recent") {
       reports.sort((a, b) => new Date(a.date) - new Date(b.date));
     }
 
