@@ -1,118 +1,186 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampusCare - Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="homepagestyle.css">
-</head>
-<body>
+const reportsContainer = document.getElementById("reportsContainer");
+const reportedTab = document.getElementById("reportedTab");
+const fixedTab = document.getElementById("fixedTab");
 
-    <div class="app-viewport">
-        
-        <!-- TOP: FIXED -->
-        <div class="fixed-header">
-            <header class="logo-container">
-                <img src="logo.png" alt="Logo" class="main-logo" onclick="location.href='aboutus.html'">
-            </header>
+const reports = JSON.parse(localStorage.getItem("reports")) || [];
 
-            <div class="search-area">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search" onkeyup="globalSearch()">
-                    <i class="fa fa-search"></i>
-                </div>
-            </div>
+function displayReports(type) {
+  reportsContainer.innerHTML = "";
 
-            <div class="action-btns">
-                <div class="sort-wrapper">
-                    <button class="btn-action" onclick="toggleSort()">
-                        Sort <i class="fa fa-chevron-down"></i>
-                    </button>
-                    <div class="sort-dropdown" id="sortMenu">
-                        <div class="sort-item" onclick="globalSort('latest')">Latest</div>
-                        <div class="sort-item" onclick="globalSort('recent')">Recent</div>
-                        <div class="sort-item" onclick="globalSort('19th')">19th Floor</div>
-                        <div class="sort-item" onclick="globalSort('7th')">7th Floor</div>
-                        <div class="sort-item" onclick="globalSort('6th')">6th Floor</div>
-                        <div class="sort-item" onclick="globalSort('LG')">LG Floor</div>
-                    </div>
-                </div>
-                <button class="btn-action" onclick="location.href='addreport.html'">
-                    <i class="fa fa-plus"></i> Report
-                </button>
-            </div>
+  const allReports = JSON.parse(localStorage.getItem("reports")) || [];
+
+  const filteredReports = allReports.filter(report => {
+    if (type === "reported") {
+      return report.status !== "Fixed";
+    }
+    if (type === "fixed") {
+      return report.status === "Fixed";
+    }
+  });
+
+  filteredReports.forEach((report) => {
+    const originalIndex = allReports.indexOf(report);
+
+    const card = document.createElement("div");
+    card.classList.add("report-card");
+
+    card.innerHTML = `
+      <div class="report-image-wrap">
+        ${
+          report.image 
+          ? `<img src="${report.image}" class="report-img">`
+          : `<div class="no-image">No image</div>`
+        }
+      </div>
+
+      <div class="report-bar">
+        <span>${report.date}</span>
+        <span>${report.area}</span>
+        <span>${report.status}</span>
+        <a href="#" class="view-detail-btn" data-index="${originalIndex}">View details</a>
+      </div>
+    `;
+
+    reportsContainer.appendChild(card);
+  });
+}
+
+reportedTab.addEventListener("click", () => {
+  reportedTab.classList.add("active");
+  fixedTab.classList.remove("active");
+  displayReports("reported");
+});
+
+fixedTab.addEventListener("click", () => {
+  fixedTab.classList.add("active");
+  reportedTab.classList.remove("active");
+  displayReports("fixed");
+});
+
+displayReports("reported");
+
+const detailPopup = document.getElementById("detailPopup");
+const detailImg = document.getElementById("detailImg");
+const detailStatus = document.getElementById("detailStatus");
+const detailDate = document.getElementById("detailDate");
+const detailLocation = document.getElementById("detailLocation");
+const detailFacility = document.getElementById("detailFacility");
+const detailDesc = document.getElementById("detailDesc");
+const closeDetail = document.getElementById("closeDetail");
+
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("view-detail-btn")) {
+    e.preventDefault();
+
+    const index = e.target.dataset.index;
+    const reports = JSON.parse(localStorage.getItem("reports")) || [];
+    const report = reports[index];
+
+    // Fill popup
+    detailImg.src = report.image || "";
+    detailStatus.textContent = `(${report.status})`;
+    detailDate.textContent = `(${report.date})`;
+    detailLocation.textContent = `(${report.area})`;
+    detailFacility.textContent = `(${report.facility})`;
+    detailDesc.textContent = report.description || "No description";
+
+    // Show popup
+    detailPopup.classList.remove("hidden");
+
+    setTimeout(() => {
+      detailPopup.classList.add("active");
+    }, 10);
+  }
+});
+
+closeDetail.addEventListener("click", () => {
+  detailPopup.classList.remove("active");
+
+  setTimeout(() => {
+    detailPopup.classList.add("hidden");
+  }, 600);
+});
+
+const searchInput = document.getElementById("searchInput");
+const sortBtn = document.getElementById("sortBtn");
+const sortMenu = document.getElementById("sortMenu");
+
+sortBtn.addEventListener("click", () => {
+  sortMenu.style.display = sortMenu.style.display === "block" ? "none" : "block";
+});
+
+searchInput.addEventListener("input", () => {
+  const keyword = searchInput.value.toLowerCase();
+  const cards = document.querySelectorAll(".report-card");
+
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+
+    if (text.includes(keyword)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
+
+document.querySelectorAll(".sort-item").forEach(item => {
+  item.addEventListener("click", () => {
+    const sortType = item.dataset.sort;
+
+    const allReports = JSON.parse(localStorage.getItem("reports")) || [];
+
+    let currentType = reportedTab.classList.contains("active") ? "reported" : "fixed";
+
+    let reports = allReports
+      .map((report, originalIndex) => ({ ...report, originalIndex }))
+      .filter(report => {
+        if (currentType === "reported") {
+          return report.status !== "Fixed";
+        }
+        if (currentType === "fixed") {
+          return report.status === "Fixed";
+        }
+      });
+
+    if (sortType === "latest") {
+      reports.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+
+    if (sortType === "oldest") {
+      reports.sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+
+    if (["19th", "7th", "6th", "LG"].includes(sortType)) {
+      reports = reports.filter(report => report.area.startsWith(sortType));
+    }
+
+    reportsContainer.innerHTML = "";
+
+    reports.forEach((report) => {
+      const card = document.createElement("div");
+      card.classList.add("report-card");
+
+      card.innerHTML = `
+        <div class="report-image-wrap">
+          ${
+            report.image
+              ? `<img src="${report.image}" class="report-img">`
+              : `<div class="no-image">No image</div>`
+          }
         </div>
 
-        <!-- MIDDLE: SCROLLABLE -->
-        <div class="scroll-content">
-<div class="fixed-facility-section">
-
-    <div class="section-header-row">
-        <div class="section-title">Fixed Facilities</div>
-        <a href="viewreport.html" class="view-all">View All</a>
-    </div>
-
-    <div id="fixedContainer" class="cards-container">
-
-        <div class="fixed-card-content searchable-card"
-             data-date="2026-05-08"
-             data-floor="7th">
-
-            <div class="image-overlay-wrapper">
-
-                <img src="p1.jpeg" class="fixed-photo">
-
-                <div class="status-overlay">
-                    <span class="status-pill">7th - SL</span>
-                    <span class="status-pill">Desk</span>
-                    <span class="status-pill">Fixed</span>
-                </div>
-
-            </div>
+        <div class="report-bar">
+          <span>${report.date}</span>
+          <span>${report.area}</span>
+          <span>${report.status}</span>
+          <a href="#" class="view-detail-btn" data-index="${report.originalIndex}">View details</a>
         </div>
+      `;
 
-    </div>
+      reportsContainer.appendChild(card);
+    });
 
-    <button class="nav-arrow prev"
-            onclick="scrollSection('fixedContainer', -1)">‹</button>
-
-    <button class="nav-arrow next"
-            onclick="scrollSection('fixedContainer', 1)">›</button>
-
-</div>
-
-            <div class="progress-section">
-                <div class="section-header-row">
-                    <div class="section-title">Reported / In-Progress</div>
-                    <a href="viewreport.html" class="view-allR">View All</a>
-                </div>
-                <div class="cards-container" id="issuedContainer">
-                    <div class="report-card searchable-card" data-date="2026-02-15" data-floor="6th">
-                        <div class="date-box">2026/02/15</div>
-                        <div class="img-box"><img src="p5.jpeg"><span class="report-status">Reported</span></div>
-                        <div class="info-box">(6th-Library), (Desk)</div>
-                    </div>
-                    <div class="report-card searchable-card" data-date="2026-02-01" data-floor="7th">
-                        <div class="date-box">2026/02/01</div>
-                        <div class="img-box"><img src="p4.jpeg"><span class="report-status">In-Progress</span></div>
-                        <div class="info-box">(7th-SL), (Chair)</div>
-                    </div>
-                </div>
-                <button class="nav-arrow progress-prev" onclick="scrollSection('issuedContainer', -1)">‹</button>
-                <button class="nav-arrow progress-next" onclick="scrollSection('issuedContainer', 1)">›</button>
-            </div>
-        </div>
-
-        <!-- BOTTOM: FIXED -->
-        <nav class="bottom-nav">
-            <div class="nav-box active" onclick="location.href='homepage.html'">Home</div>
-            <div class="nav-box" onclick="location.href='viewreport.html'">View Reports</div>
-            <div class="nav-box" onclick="location.href='feedback.html'">Feedback</div>
-        </nav>
-    </div>
-
-    <script src="homepagescript.js"></script>
-</body>
-</html>
+    sortMenu.style.display = "none";
+  });
+});
