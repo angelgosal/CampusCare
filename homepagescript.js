@@ -90,7 +90,6 @@ function globalSort(crit){
         {container:document.getElementById("fixedContainer")},
         {container:document.getElementById("issuedContainer")}
     ];
-
     sections.forEach(obj=>{
 
         const cont=obj.container;
